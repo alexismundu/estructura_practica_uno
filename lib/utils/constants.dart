@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // home
-const String APP_TITLE = "Coffe shop";
+const String APP_TITLE = "Snacks shop";
 // profile
 const String PROFILE_TITLE = "Perfil";
 const String PROFILE_LOGOUT = "Cerrar sesion";
