@@ -42,12 +42,12 @@ class _HomeState extends State<Home> {
             ),
           ),
           ItemHome(
-            title: "Granos",
-            image: "https://i.imgur.com/5MZocC1.png",
-          ),
-          ItemHome(
             title: "Postres",
             image: "https://i.imgur.com/fI7Tezv.png",
+          ),
+          ItemHome(
+            title: "Granos",
+            image: "https://i.imgur.com/5MZocC1.png",
           ),
           ItemHome(
             // TODO: Al hacer clic, que muestre un snackbar de "Proximamente"
