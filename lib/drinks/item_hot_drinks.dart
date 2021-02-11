@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 
 import '../utils/constants.dart';
-import '../utils/constants.dart';
-import '../utils/constants.dart';
-import '../utils/constants.dart';
-import 'hot_drinks_page.dart';
-import 'item_hot_drinks_details.dart';
+import 'package:estructura_practica_1/drinks/hot_drink_details_page.dart';
 
 // class ItemHotDrinks extends StatefulWidget {
 //   final ProductHotDrinks drink;
@@ -125,7 +121,7 @@ class _ItemHotDrinksState extends State<ItemHotDrinks> {
 
   void _openHotDrinkDetails() {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => HotDrinkDetails(),
+      builder: (context) => HotDrinkDetailsPage(drink: widget.drink),
     ));
   }
 }
