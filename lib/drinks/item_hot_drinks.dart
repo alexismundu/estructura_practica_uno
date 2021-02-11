@@ -91,7 +91,6 @@ class _ItemHotDrinksState extends State<ItemHotDrinks> {
             child: Image.network(
               "${widget.drink.productImage}",
               fit: BoxFit.contain,
-              height: 140,
               width: 140,
             ),
           ),
