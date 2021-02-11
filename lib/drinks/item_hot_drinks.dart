@@ -4,6 +4,7 @@ import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 import '../utils/constants.dart';
 import '../utils/constants.dart';
 import '../utils/constants.dart';
+import '../utils/constants.dart';
 
 // class ItemHotDrinks extends StatefulWidget {
 //   final ProductHotDrinks drink;
@@ -106,7 +107,10 @@ class _ItemHotDrinksState extends State<ItemHotDrinks> {
                               : favorite_icon = Icons.favorite_border_outlined
                         })
                   },
-                  child: Icon(favorite_icon),
+                  child: Icon(
+                    favorite_icon,
+                    color: PRIMARY_COLOR,
+                  ),
                 )),
           )
         ],
