@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: PRIMARY_COLOR,
       ),
-      home: Home(title: APP_TITLE),
+      initialRoute: '/',
+      routes: {'/': (context) => Home(title: APP_TITLE)},
     );
   }
 }
