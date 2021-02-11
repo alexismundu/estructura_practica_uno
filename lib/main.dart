@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: APP_TITLE,
       theme: ThemeData(
+        fontFamily: 'Montserrat',
         primarySwatch: PRIMARY_COLOR,
       ),
       initialRoute: '/',

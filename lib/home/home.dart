@@ -61,7 +61,6 @@ class _HomeState extends State<Home> {
           ),
           GestureDetector(
             onTap: () {
-              print("Tazas");
               ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(SnackBar(content: Text("Proximamente")));

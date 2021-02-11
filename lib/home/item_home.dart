@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/constants.dart';
+
 class ItemHome extends StatelessWidget {
   final String title;
   final String image;
@@ -23,7 +25,7 @@ class ItemHome extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),
-              color: Colors.indigo,
+              color: PRIMARY_COLOR,
               child: Container(height: 180),
             ),
           ),
