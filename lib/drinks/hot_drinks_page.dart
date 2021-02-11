@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/drinks/item_hot_drinks.dart';
 import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 
+import '../profile.dart';
+
 class HotDrinksPage extends StatelessWidget {
   final List<ProductHotDrinks> drinksList;
   HotDrinksPage({
@@ -13,7 +15,22 @@ class HotDrinksPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bebidas"),
+        title:
+            new Center(child: new Text("Bebidas", textAlign: TextAlign.center)),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.person),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => Profile()),
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () {},
+          )
+        ],
       ),
       body: ListView.builder(
         itemCount: drinksList.length,
