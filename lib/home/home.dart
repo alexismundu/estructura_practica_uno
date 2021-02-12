@@ -1,9 +1,10 @@
+import 'package:estructura_practica_1/cart/cart_page.dart';
+import 'package:estructura_practica_1/models/product_item_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/home/item_home.dart';
 import 'package:estructura_practica_1/profile.dart';
 
 import '../drinks/hot_drinks_page.dart';
-import '../models/product_repository.dart';
 import '../models/product_repository.dart';
 
 class Home extends StatefulWidget {
@@ -32,7 +33,11 @@ class _HomeState extends State<Home> {
           ),
           IconButton(
             icon: Icon(Icons.shopping_cart),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => CartPage()),
+              );
+            },
           )
         ],
       ),
@@ -76,12 +81,11 @@ class _HomeState extends State<Home> {
   }
 
   void _openHotDrinksPage() {
-    // TODO: completar en navigator pasando los parametros a la pagina de HotDrinksPage
-
     Navigator.of(context).push(
       MaterialPageRoute(
           builder: (context) => HotDrinksPage(
-              drinksList: ProductRepository.loadProducts(ProductType.BEBIDAS))),
+                drinksList: ProductRepository.loadProducts(ProductType.BEBIDAS),
+              )),
     );
   }
 

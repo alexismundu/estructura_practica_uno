@@ -1,13 +1,11 @@
 import 'package:estructura_practica_1/pay/pay_page.dart';
+import 'package:estructura_practica_1/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/cart/item_cart.dart';
-import 'package:estructura_practica_1/models/product_item_cart.dart';
 
 class Cart extends StatefulWidget {
-  final List<ProductItemCart> productsList;
   Cart({
     Key key,
-    @required this.productsList,
   }) : super(key: key);
 
   @override
@@ -19,7 +17,7 @@ class _CartState extends State<Cart> {
   @override
   void initState() {
     super.initState();
-    for (var item in widget.productsList) {
+    for (var item in cartItems) {
       _total += (item.productPrice * item.productAmount);
     }
   }
@@ -33,11 +31,12 @@ class _CartState extends State<Cart> {
           Container(
             height: MediaQuery.of(context).size.height * 0.65,
             child: ListView.builder(
-              itemCount: widget.productsList.length,
+              itemCount: cartItems.length,
               itemBuilder: (BuildContext context, int index) {
                 return ItemCart(
+                  onProductDeleted: _productDelete,
                   onAmountUpdated: _priceUpdate,
-                  product: widget.productsList[index],
+                  product: cartItems[index],
                 );
               },
             ),
@@ -82,6 +81,12 @@ class _CartState extends State<Cart> {
   void _priceUpdate(double newItemPrice) {
     setState(() {
       _total += newItemPrice;
+    });
+  }
+
+  void _productDelete(double itemDeleted) {
+    setState(() {
+      _total -= itemDeleted;
     });
   }
 }

@@ -1,6 +1,4 @@
 import 'package:estructura_practica_1/cart/cart_page.dart';
-import 'package:estructura_practica_1/models/product_item_cart.dart';
-import 'package:estructura_practica_1/models/product_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/drinks/item_hot_drinks.dart';
 import 'package:estructura_practica_1/models/product_hot_drinks.dart';
@@ -32,32 +30,8 @@ class HotDrinksPage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.shopping_cart),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => CartPage(
-                        productsList: [
-                          ProductItemCart(
-                            product: drinksList[0],
-                            typeOfProduct: ProductType.BEBIDAS,
-                            productTitle: drinksList[0].productTitle,
-                            productAmount: 2,
-                            productPrice: drinksList[0].productPrice,
-                          ),
-                          ProductItemCart(
-                            product: drinksList[1],
-                            typeOfProduct: ProductType.BEBIDAS,
-                            productTitle: drinksList[1].productTitle,
-                            productAmount: 2,
-                            productPrice: drinksList[1].productPrice,
-                          ),
-                          ProductItemCart(
-                            product: drinksList[2],
-                            typeOfProduct: ProductType.BEBIDAS,
-                            productTitle: drinksList[2].productTitle,
-                            productAmount: 2,
-                            productPrice: drinksList[2].productPrice,
-                          )
-                        ],
-                      )));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => CartPage()));
             },
           )
         ],

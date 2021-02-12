@@ -1,3 +1,6 @@
+import 'package:estructura_practica_1/cart/cart_page.dart';
+import 'package:estructura_practica_1/models/product_item_cart.dart';
+import 'package:estructura_practica_1/models/product_repository.dart';
 import 'package:flutter/material.dart';
 
 import '../models/product_hot_drinks.dart';
@@ -16,10 +19,12 @@ class ItemHotDrinkDetails extends StatefulWidget {
 class _ItemHotDrinkDetailsState extends State<ItemHotDrinkDetails> {
   int _selectedIndex = 1;
   final _options = ["Chico", "Mediano", "Grande"];
-  IconData favoriteIcon = Icons.favorite_border_outlined;
+  IconData favoriteIcon;
 
   @override
   Widget build(BuildContext context) {
+    favoriteIcon =
+        widget.drink.liked ? Icons.favorite : Icons.favorite_border_outlined;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -60,11 +65,7 @@ class _ItemHotDrinkDetailsState extends State<ItemHotDrinkDetails> {
                             child: GestureDetector(
                               onTap: () => {
                                 setState(() => {
-                                      favoriteIcon ==
-                                              Icons.favorite_border_outlined
-                                          ? favoriteIcon = Icons.favorite
-                                          : favoriteIcon =
-                                              Icons.favorite_border_outlined
+                                      _setFavoriteIcon(),
                                     })
                               },
                               child: Icon(
@@ -114,11 +115,15 @@ class _ItemHotDrinkDetailsState extends State<ItemHotDrinkDetails> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ElevatedButton(
-                onPressed: () => {},
+                onPressed: () => {_addProductToCart()},
                 child: Text("AGREGAR AL CARRITO"),
               ),
               ElevatedButton(
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => CartPage()),
+                  )
+                },
                 child: Text("COMPRAR AHORA"),
               ),
             ],
@@ -142,6 +147,14 @@ class _ItemHotDrinkDetailsState extends State<ItemHotDrinkDetails> {
           setState(() {
             if (selected) {
               _selectedIndex = i;
+              if (i == 0) {
+                widget.drink.productSize = ProductSize.CH;
+              } else if (i == 1) {
+                widget.drink.productSize = ProductSize.M;
+              } else {
+                widget.drink.productSize = ProductSize.G;
+              }
+              widget.drink.productPrice = widget.drink.productPriceCalculator();
             }
           });
         },
@@ -152,5 +165,42 @@ class _ItemHotDrinkDetailsState extends State<ItemHotDrinkDetails> {
     }
 
     return chips;
+  }
+
+  void _setFavoriteIcon() {
+    if (widget.drink.liked) {
+      favoriteIcon = Icons.favorite_border;
+    } else {
+      favoriteIcon = Icons.favorite;
+    }
+    widget.drink.liked = !widget.drink.liked;
+  }
+
+  bool _isDrinkInCart() {
+    for (ProductItemCart item in cartItems) {
+      if (item.typeOfProduct != ProductType.BEBIDAS) continue;
+      if (widget.drink.productTitle == item.productTitle &&
+          widget.drink.productSize == item.product.productSize) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  void _addProductToCart() {
+    if (!_isDrinkInCart()) {
+      cartItems.add(ProductItemCart(
+        product: ProductHotDrinks(
+            productTitle: widget.drink.productTitle,
+            productDescription: widget.drink.productDescription,
+            productImage: widget.drink.productImage,
+            productSize: widget.drink.productSize,
+            productAmount: widget.drink.productAmount),
+        productAmount: 1,
+        productPrice: widget.drink.productPrice,
+        productTitle: widget.drink.productTitle,
+        typeOfProduct: ProductType.BEBIDAS,
+      ));
+    }
   }
 }

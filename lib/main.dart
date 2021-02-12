@@ -23,7 +23,11 @@ class MyApp extends StatelessWidget {
             onPrimary: SECONDARY_COLOR, // foreground
           ))),
       initialRoute: '/',
-      routes: {'/': (context) => Home(title: APP_TITLE)},
+      routes: {
+        '/': (context) => Home(
+              title: APP_TITLE,
+            )
+      },
     );
   }
 }

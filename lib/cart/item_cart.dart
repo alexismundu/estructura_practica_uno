@@ -8,9 +8,11 @@ import 'package:flutter/material.dart';
 class ItemCart extends StatefulWidget {
   final ProductItemCart product;
   final ValueChanged<double> onAmountUpdated;
+  final ValueChanged<double> onProductDeleted;
   ItemCart({
     Key key,
     @required this.onAmountUpdated,
+    @required this.onProductDeleted,
     @required this.product,
   }) : super(key: key);
 
@@ -87,7 +89,13 @@ class _ItemCartState extends State<ItemCart> {
                                 : favoriteIcon = Icon(Icons.favorite_border);
                           })
                         }),
-                IconButton(icon: Icon(Icons.delete), onPressed: () => {}),
+                IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () => {
+                          cartItems.remove(widget.product),
+                          widget.onProductDeleted(widget.product.productPrice *
+                              widget.product.productAmount),
+                        }),
               ],
             ),
           )

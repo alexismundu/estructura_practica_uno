@@ -1,3 +1,4 @@
+import 'package:estructura_practica_1/models/product_item_cart.dart';
 import 'package:flutter/material.dart';
 
 // home
@@ -92,3 +93,5 @@ const Color DETAILS_IMAGE_BACKGROUND_COLOR_LIGHT = MaterialColor(0XFFFABF7C, {
   800: Color(0XFFFABF7C),
   900: Color(0XFFFABF7C),
 });
+
+final List<ProductItemCart> cartItems = [];
