@@ -1,11 +1,10 @@
+import 'package:estructura_practica_1/grains/item_grain_details.dart';
 import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 
-import 'item_hot_drink_details.dart';
-
-class HotDrinkDetailsPage extends StatelessWidget {
+class GrainDetailsPage extends StatelessWidget {
   final ProductHotDrinks drink;
-  HotDrinkDetailsPage({
+  GrainDetailsPage({
     Key key,
     @required this.drink,
   }) : super(key: key);
@@ -25,6 +24,6 @@ class HotDrinkDetailsPage extends StatelessWidget {
             ),
           )),
         ),
-        body: ItemHotDrinkDetails(drink: drink));
+        body: ItemGrainDetails(drink: drink));
   }
 }

@@ -4,18 +4,18 @@ import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 import '../utils/constants.dart';
 import 'package:estructura_practica_1/drinks/hot_drink_details_page.dart';
 
-class ItemHotDrinks extends StatefulWidget {
+class ItemGrains extends StatefulWidget {
   final ProductHotDrinks drink;
-  ItemHotDrinks({
+  ItemGrains({
     Key key,
     @required this.drink,
   }) : super(key: key);
 
   @override
-  _ItemHotDrinksState createState() => _ItemHotDrinksState();
+  _ItemGrainsState createState() => _ItemGrainsState();
 }
 
-class _ItemHotDrinksState extends State<ItemHotDrinks> {
+class _ItemGrainsState extends State<ItemGrains> {
   IconData favoriteIcon;
   @override
   Widget build(BuildContext context) {

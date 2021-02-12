@@ -1,11 +1,10 @@
 import 'package:estructura_practica_1/cart/cart_page.dart';
-import 'package:estructura_practica_1/models/product_item_cart.dart';
+import 'package:estructura_practica_1/grains/grains_page.dart';
 import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/home/item_home.dart';
 import 'package:estructura_practica_1/profile.dart';
 
 import '../drinks/hot_drinks_page.dart';
-import '../models/product_repository.dart';
 
 class Home extends StatefulWidget {
   final String title;
@@ -88,7 +87,7 @@ class _HomeState extends State<Home> {
 
   void _openGrainsPage() {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => null),
+      MaterialPageRoute(builder: (context) => GrainsPage()),
     );
   }
 
