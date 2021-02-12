@@ -51,7 +51,7 @@ class _CartState extends State<Cart> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w100),
                 ),
                 Text(
-                  "\$$_total MX",
+                  "\$$_total MXN",
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.w100),
                 )
               ],

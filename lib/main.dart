@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           fontFamily: 'Montserrat',
           primarySwatch: PRIMARY_COLOR,
+          accentColor: SECONDARY_COLOR,
+          iconTheme: IconThemeData(color: PRIMARY_COLOR),
           elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
             primary: LIST_BACKGROUND_COLOR_DARKER, // background
