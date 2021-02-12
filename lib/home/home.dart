@@ -1,4 +1,5 @@
 import 'package:estructura_practica_1/cart/cart_page.dart';
+import 'package:estructura_practica_1/desserts/desserts_page.dart';
 import 'package:estructura_practica_1/grains/grains_page.dart';
 import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/home/item_home.dart';
@@ -93,7 +94,7 @@ class _HomeState extends State<Home> {
 
   void _openDessertPage() {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => null),
+      MaterialPageRoute(builder: (context) => DessertsPage()),
     );
   }
 }

@@ -1,22 +1,22 @@
-import 'package:estructura_practica_1/grains/grain_details_page.dart';
+import 'package:estructura_practica_1/desserts/dessert_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 
 import '../utils/constants.dart';
 import 'package:estructura_practica_1/drinks/hot_drink_details_page.dart';
 
-class ItemHotDrinks extends StatefulWidget {
+class ItemDesserts extends StatefulWidget {
   final ProductHotDrinks drink;
-  ItemHotDrinks({
+  ItemDesserts({
     Key key,
     @required this.drink,
   }) : super(key: key);
 
   @override
-  _ItemHotDrinksState createState() => _ItemHotDrinksState();
+  _ItemDessertsState createState() => _ItemDessertsState();
 }
 
-class _ItemHotDrinksState extends State<ItemHotDrinks> {
+class _ItemDessertsState extends State<ItemDesserts> {
   IconData favoriteIcon;
   @override
   Widget build(BuildContext context) {
@@ -102,7 +102,7 @@ class _ItemHotDrinksState extends State<ItemHotDrinks> {
 
   void _openHotDrinkDetails() {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => GrainDetailsPage(drink: widget.drink),
+      builder: (context) => DessertDetailsPage(drink: widget.drink),
     ));
   }
 
