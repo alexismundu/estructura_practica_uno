@@ -11,9 +11,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: APP_TITLE,
       theme: ThemeData(
-        fontFamily: 'Montserrat',
-        primarySwatch: PRIMARY_COLOR,
-      ),
+          fontFamily: 'Montserrat',
+          primarySwatch: PRIMARY_COLOR,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+            primary: LIST_BACKGROUND_COLOR_DARKER, // background
+            onPrimary: SECONDARY_COLOR, // foreground
+          ))),
       initialRoute: '/',
       routes: {'/': (context) => Home(title: APP_TITLE)},
     );
