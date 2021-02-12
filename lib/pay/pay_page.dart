@@ -25,32 +25,24 @@ class _PayPageState extends State<PayPage> {
               );
             },
           ),
-          IconButton(
-            icon: Icon(Icons.shopping_cart),
-            onPressed: () {},
-          )
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          GestureDetector(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            GestureDetector(
+                onTap: _showMaterialDialog,
+                child: _createPayItem(Icons.credit_card, "Tarjeta de crédito")),
+            GestureDetector(
               onTap: _showMaterialDialog,
-              child: _createPayItem(Icons.credit_card, "Tarjeta de crédito")),
-          GestureDetector(
-            onTap: _showMaterialDialog,
-            child: _createPayItem(Icons.payment_outlined, "PayPal"),
-          ),
-          GestureDetector(
-              onTap: _showMaterialDialog,
-              child: _createPayItem(Icons.card_giftcard, "Tarjeta de regalo")),
-          GestureDetector(
-            onTap: () {
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(SnackBar(content: Text("Proximamente")));
-            },
-          ),
-        ],
+              child: _createPayItem(Icons.payment_outlined, "PayPal"),
+            ),
+            GestureDetector(
+                onTap: _showMaterialDialog,
+                child:
+                    _createPayItem(Icons.card_giftcard, "Tarjeta de regalo")),
+          ],
+        ),
       ),
     );
   }
@@ -83,47 +75,44 @@ class _PayPageState extends State<PayPage> {
   }
 
   _createPayItem(IconData icon, String title) {
-    return Expanded(
-      child: Container(
-        margin: EdgeInsets.only(bottom: 24, left: 20, right: 20, top: 30),
-        height: MediaQuery.of(context).size.height * 0.2,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.centerRight,
-                end: Alignment.centerLeft,
-                colors: [
-              LIST_BACKGROUND_COLOR_DARKER,
-              LIST_BACKGROUND_COLOR_LIGHT
-            ])),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 22.0),
+    return Container(
+      margin: EdgeInsets.only(bottom: 24, left: 20, right: 20, top: 30),
+      height: MediaQuery.of(context).size.height * 0.2,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.centerRight,
+              end: Alignment.centerLeft,
+              colors: [
+            LIST_BACKGROUND_COLOR_DARKER,
+            LIST_BACKGROUND_COLOR_LIGHT
+          ])),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 22.0),
+          child: Icon(
+            icon,
+            size: 60,
+          ),
+        ),
+        Container(
+          width: 150,
+          child: Text(
+            title,
+            style:
+                TextStyle(fontSize: 28, color: Theme.of(context).accentColor),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 8.0, bottom: 8),
+          child: Align(
+            alignment: Alignment.bottomRight,
             child: Icon(
-              icon,
-              size: 60,
+              Icons.edit,
+              size: 34,
             ),
           ),
-          Container(
-            width: 150,
-            child: Text(
-              title,
-              style:
-                  TextStyle(fontSize: 28, color: Theme.of(context).accentColor),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0, bottom: 8),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Icon(
-                Icons.edit,
-                size: 34,
-              ),
-            ),
-          )
-        ]),
-      ),
+        )
+      ]),
     );
   }
 }

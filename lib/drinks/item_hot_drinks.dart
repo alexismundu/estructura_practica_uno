@@ -34,9 +34,11 @@ class ItemHotDrinks extends StatefulWidget {
 }
 
 class _ItemHotDrinksState extends State<ItemHotDrinks> {
-  IconData favoriteIcon = Icons.favorite_border_outlined;
+  IconData favoriteIcon;
   @override
   Widget build(BuildContext context) {
+    favoriteIcon =
+        widget.drink.liked ? Icons.favorite : Icons.favorite_border_outlined;
     return GestureDetector(
       onTap: _openHotDrinkDetails,
       child: Container(
@@ -101,11 +103,7 @@ class _ItemHotDrinksState extends State<ItemHotDrinks> {
                   alignment: Alignment.topRight,
                   child: GestureDetector(
                     onTap: () => {
-                      setState(() => {
-                            favoriteIcon == Icons.favorite_border_outlined
-                                ? favoriteIcon = Icons.favorite
-                                : favoriteIcon = Icons.favorite_border_outlined
-                          })
+                      setState(() => {_setFavoriteIcon()})
                     },
                     child: Icon(
                       favoriteIcon,
@@ -123,5 +121,18 @@ class _ItemHotDrinksState extends State<ItemHotDrinks> {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => HotDrinkDetailsPage(drink: widget.drink),
     ));
+  }
+
+  void _setFavoriteIcon() {
+    for (ProductHotDrinks drink in drinksList) {
+      if (widget.drink.productTitle == drink.productTitle) {
+        if (drink.liked) {
+          favoriteIcon = Icons.favorite_border;
+        } else {
+          favoriteIcon = Icons.favorite;
+        }
+        drink.liked = !drink.liked;
+      }
+    }
   }
 }

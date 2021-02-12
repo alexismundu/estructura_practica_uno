@@ -1,4 +1,5 @@
 import 'package:estructura_practica_1/cart/cart_page.dart';
+import 'package:estructura_practica_1/drinks/item_hot_drinks.dart';
 import 'package:estructura_practica_1/models/product_item_cart.dart';
 import 'package:estructura_practica_1/models/product_repository.dart';
 import 'package:flutter/material.dart';
@@ -168,12 +169,16 @@ class _ItemHotDrinkDetailsState extends State<ItemHotDrinkDetails> {
   }
 
   void _setFavoriteIcon() {
-    if (widget.drink.liked) {
-      favoriteIcon = Icons.favorite_border;
-    } else {
-      favoriteIcon = Icons.favorite;
+    for (ProductHotDrinks drink in drinksList) {
+      if (widget.drink.productTitle == drink.productTitle) {
+        if (drink.liked) {
+          favoriteIcon = Icons.favorite_border;
+        } else {
+          favoriteIcon = Icons.favorite;
+        }
+        drink.liked = !drink.liked;
+      }
     }
-    widget.drink.liked = !widget.drink.liked;
   }
 
   bool _isDrinkInCart() {

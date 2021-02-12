@@ -22,12 +22,9 @@ class MyApp extends StatelessWidget {
             primary: LIST_BACKGROUND_COLOR_DARKER, // background
             onPrimary: SECONDARY_COLOR, // foreground
           ))),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Home(
-              title: APP_TITLE,
-            )
-      },
+      home: Home(
+        title: APP_TITLE,
+      ),
     );
   }
 }

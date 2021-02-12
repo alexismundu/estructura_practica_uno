@@ -1,15 +1,13 @@
 import 'package:estructura_practica_1/cart/cart_page.dart';
+import 'package:estructura_practica_1/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/drinks/item_hot_drinks.dart';
-import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 
 import '../profile.dart';
 
 class HotDrinksPage extends StatelessWidget {
-  final List<ProductHotDrinks> drinksList;
   HotDrinksPage({
     Key key,
-    @required this.drinksList,
   }) : super(key: key);
 
   @override

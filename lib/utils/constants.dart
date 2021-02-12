@@ -1,4 +1,6 @@
+import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 import 'package:estructura_practica_1/models/product_item_cart.dart';
+import 'package:estructura_practica_1/models/product_repository.dart';
 import 'package:flutter/material.dart';
 
 // home
@@ -95,3 +97,6 @@ const Color DETAILS_IMAGE_BACKGROUND_COLOR_LIGHT = MaterialColor(0XFFFABF7C, {
 });
 
 final List<ProductItemCart> cartItems = [];
+
+final List<ProductHotDrinks> drinksList =
+    ProductRepository.loadProducts(ProductType.BEBIDAS);

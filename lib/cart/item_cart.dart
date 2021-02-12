@@ -21,10 +21,11 @@ class ItemCart extends StatefulWidget {
 }
 
 class _ItemCartState extends State<ItemCart> {
-  Icon favoriteIcon = Icon(Icons.favorite_border);
+  Icon favoriteIcon;
 
   @override
   Widget build(BuildContext context) {
+    favoriteIcon = _initFavIcon();
     return Container(
       height: MediaQuery.of(context).size.height * .2,
       decoration: BoxDecoration(
@@ -84,9 +85,7 @@ class _ItemCartState extends State<ItemCart> {
                     icon: favoriteIcon,
                     onPressed: () => {
                           setState(() {
-                            favoriteIcon.icon == Icons.favorite_border
-                                ? favoriteIcon = Icon(Icons.favorite)
-                                : favoriteIcon = Icon(Icons.favorite_border);
+                            _setFavIcon();
                           })
                         }),
                 IconButton(
@@ -153,5 +152,35 @@ class _ItemCartState extends State<ItemCart> {
         style: TextStyle(color: Theme.of(context).accentColor, fontSize: 16),
       );
     }
+  }
+
+  void _setFavIcon() {
+    if (widget.product.typeOfProduct == ProductType.BEBIDAS) {
+      for (ProductHotDrinks drink in drinksList) {
+        if (widget.product.productTitle == drink.productTitle) {
+          if (drink.liked) {
+            favoriteIcon = Icon(Icons.favorite_border);
+          } else {
+            favoriteIcon = Icon(Icons.favorite);
+          }
+          drink.liked = !drink.liked;
+        }
+      }
+    }
+  }
+
+  Icon _initFavIcon() {
+    if (widget.product.typeOfProduct == ProductType.BEBIDAS) {
+      for (ProductHotDrinks drink in drinksList) {
+        if (widget.product.productTitle == drink.productTitle) {
+          if (drink.liked) {
+            return Icon(Icons.favorite);
+          } else {
+            return Icon(Icons.favorite_border);
+          }
+        }
+      }
+    }
+    return Icon(Icons.access_alarm);
   }
 }
