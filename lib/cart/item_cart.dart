@@ -1,4 +1,7 @@
+import 'package:estructura_practica_1/models/product_grains.dart';
+import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 import 'package:estructura_practica_1/models/product_item_cart.dart';
+import 'package:estructura_practica_1/models/product_repository.dart';
 import 'package:estructura_practica_1/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +40,7 @@ class _ItemCartState extends State<ItemCart> {
           ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: Image.network(
-              widget.product.productImage,
+              widget.product.product.productImage,
               width: 90,
             ),
           ),
@@ -49,11 +52,7 @@ class _ItemCartState extends State<ItemCart> {
                 "${widget.product.productTitle}",
                 style: TextStyle(fontSize: 20),
               ),
-              Text(
-                "Tamaño grande",
-                style: TextStyle(
-                    color: Theme.of(context).accentColor, fontSize: 16),
-              ),
+              _createSizeText(widget.product),
               Row(
                 children: [
                   IconButton(
@@ -109,5 +108,42 @@ class _ItemCartState extends State<ItemCart> {
       --widget.product.productAmount;
     });
     widget.onAmountUpdated(-1 * widget.product.productPrice);
+  }
+
+  Text _createDrinkSizeText(ProductHotDrinks drink) {
+    String sizeText = "Tamaño grande";
+    if (drink.productSize == ProductSize.CH) {
+      sizeText = "Tamaño chico";
+    } else if (drink.productSize == ProductSize.M) {
+      sizeText = "Tamaño mediano";
+    }
+    return Text(
+      sizeText,
+      style: TextStyle(color: Theme.of(context).accentColor, fontSize: 16),
+    );
+  }
+
+  Text _createGrainWeightText(ProductGrains grains) {
+    String sizeText = "Kilo";
+    if (grains.productWeight == ProductWeight.CUARTO) {
+      sizeText = "Cuarto";
+    }
+    return Text(
+      sizeText,
+      style: TextStyle(color: Theme.of(context).accentColor, fontSize: 16),
+    );
+  }
+
+  Text _createSizeText(ProductItemCart product) {
+    if (product.typeOfProduct == ProductType.BEBIDAS) {
+      return _createDrinkSizeText(product.product);
+    } else if (product.typeOfProduct == ProductType.GRANO) {
+      return _createGrainWeightText(product.product);
+    } else {
+      return Text(
+        "N/A",
+        style: TextStyle(color: Theme.of(context).accentColor, fontSize: 16),
+      );
+    }
   }
 }

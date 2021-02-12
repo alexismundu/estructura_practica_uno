@@ -36,25 +36,25 @@ class HotDrinksPage extends StatelessWidget {
                   builder: (context) => CartPage(
                         productsList: [
                           ProductItemCart(
+                            product: drinksList[0],
                             typeOfProduct: ProductType.BEBIDAS,
                             productTitle: drinksList[0].productTitle,
                             productAmount: 2,
                             productPrice: drinksList[0].productPrice,
-                            productImage: drinksList[0].productImage,
                           ),
                           ProductItemCart(
+                            product: drinksList[1],
                             typeOfProduct: ProductType.BEBIDAS,
                             productTitle: drinksList[1].productTitle,
                             productAmount: 2,
                             productPrice: drinksList[1].productPrice,
-                            productImage: drinksList[1].productImage,
                           ),
                           ProductItemCart(
+                            product: drinksList[2],
                             typeOfProduct: ProductType.BEBIDAS,
                             productTitle: drinksList[2].productTitle,
                             productAmount: 2,
                             productPrice: drinksList[2].productPrice,
-                            productImage: drinksList[2].productImage,
                           )
                         ],
                       )));

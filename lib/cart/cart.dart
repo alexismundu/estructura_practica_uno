@@ -1,3 +1,4 @@
+import 'package:estructura_practica_1/pay/pay_page.dart';
 import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/cart/item_cart.dart';
 import 'package:estructura_practica_1/models/product_item_cart.dart';
@@ -60,10 +61,17 @@ class _CartState extends State<Cart> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
-                onPressed: () => {},
+                onPressed: () => {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (_) => PayPage(
+                                  title: "Pagos",
+                                )),
+                      )
+                    },
                 child: Text(
                   "PAGAR",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.black, fontSize: 24),
                 )),
           )
         ],

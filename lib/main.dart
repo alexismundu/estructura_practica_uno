@@ -11,6 +11,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: APP_TITLE,
       theme: ThemeData(
+          textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(primary: Colors.purple[500])),
           fontFamily: 'Montserrat',
           primarySwatch: PRIMARY_COLOR,
           accentColor: SECONDARY_COLOR,
