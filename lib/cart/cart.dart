@@ -26,10 +26,11 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.9,
+            height: MediaQuery.of(context).size.height * 0.65,
             child: ListView.builder(
               itemCount: widget.productsList.length,
               itemBuilder: (BuildContext context, int index) {
@@ -40,10 +41,31 @@ class _CartState extends State<Cart> {
               },
             ),
           ),
-          Positioned(
-            bottom: 0,
-            child: Text("Total: \$$_total"),
+          Padding(
+            padding: EdgeInsets.only(top: 40, left: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Total",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w100),
+                ),
+                Text(
+                  "\$$_total MX",
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.w100),
+                )
+              ],
+            ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(
+                onPressed: () => {},
+                child: Text(
+                  "PAGAR",
+                  style: TextStyle(color: Colors.black),
+                )),
+          )
         ],
       ),
     );
