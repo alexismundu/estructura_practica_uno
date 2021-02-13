@@ -1,6 +1,8 @@
 import 'package:estructura_practica_1/cart/cart_page.dart';
 import 'package:estructura_practica_1/desserts/desserts_page.dart';
 import 'package:estructura_practica_1/grains/grains_page.dart';
+import 'package:estructura_practica_1/login.dart';
+import 'package:estructura_practica_1/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/home/item_home.dart';
 import 'package:estructura_practica_1/profile.dart';
@@ -19,6 +21,60 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              decoration:
+                  BoxDecoration(color: DETAILS_IMAGE_BACKGROUND_COLOR_DARKER),
+              accountName: Text(PROFILE_NAME),
+              accountEmail: Text(PROFILE_EMAIL),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.grey,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    PROFILE_PICTURE,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            ListTile(
+              title: Text(PROFILE_CART),
+              leading: Icon(Icons.shopping_cart),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => CartPage()));
+              },
+            ),
+            ListTile(
+              title: Text(PROFILE_WISHES),
+              leading: Icon(Icons.favorite_border),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(PROFILE_HISTORY),
+              leading: Icon(Icons.store),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(PROFILE_SETTINGS),
+              leading: Icon(Icons.settings),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text("CERRAR SESION"),
+              leading: Icon(Icons.logout),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => LoginPage()));
+              },
+            ),
+          ],
+        ), // Populate the Drawer in the next step.
+      ),
       appBar: AppBar(
         title: Text(widget.title),
         actions: <Widget>[
@@ -26,7 +82,6 @@ class _HomeState extends State<Home> {
             icon: Icon(Icons.person),
             onPressed: () {
               Navigator.of(context).push(
-                // TODO: Eliminar este boton y adaptar todo el contenido de la pagina de perfil en un Drawer aqui en la pantalla Home
                 MaterialPageRoute(builder: (_) => Profile()),
               );
             },
