@@ -1,3 +1,5 @@
+import 'package:estructura_practica_1/cart/cart_page.dart';
+import 'package:estructura_practica_1/login.dart';
 import 'package:estructura_practica_1/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:estructura_practica_1/profile.dart';
@@ -14,6 +16,60 @@ class _PayPageState extends State<PayPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              decoration:
+                  BoxDecoration(color: DETAILS_IMAGE_BACKGROUND_COLOR_DARKER),
+              accountName: Text(PROFILE_NAME),
+              accountEmail: Text(PROFILE_EMAIL),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.grey,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    PROFILE_PICTURE,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            ListTile(
+              title: Text(PROFILE_CART),
+              leading: Icon(Icons.shopping_cart),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => CartPage()));
+              },
+            ),
+            ListTile(
+              title: Text(PROFILE_WISHES),
+              leading: Icon(Icons.favorite_border),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(PROFILE_HISTORY),
+              leading: Icon(Icons.store),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(PROFILE_SETTINGS),
+              leading: Icon(Icons.settings),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text("CERRAR SESION"),
+              leading: Icon(Icons.logout),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => LoginPage()));
+              },
+            ),
+          ],
+        ), // Populate the Drawer in the next step.
+      ),
       appBar: AppBar(
         title: Text(widget.title),
         actions: <Widget>[
@@ -35,7 +91,7 @@ class _PayPageState extends State<PayPage> {
                 child: _createPayItem(Icons.credit_card, "Tarjeta de crédito")),
             GestureDetector(
               onTap: _showMaterialDialog,
-              child: _createPayItem(Icons.payment_outlined, "PayPal"),
+              child: _createPayItem(Icons.payments, "PayPal"),
             ),
             GestureDetector(
                 onTap: _showMaterialDialog,
@@ -52,8 +108,7 @@ class _PayPageState extends State<PayPage> {
         context: context,
         builder: (_) => new AlertDialog(
               titlePadding: EdgeInsets.all(0),
-              title: Image.network(
-                  "https://ep01.epimg.net/elcomidista/imagenes/2017/09/27/articulo/1506522721_155894_1506523041_media_normal.jpg"),
+              title: Image.asset("assets/images/coffee.jpg"),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,

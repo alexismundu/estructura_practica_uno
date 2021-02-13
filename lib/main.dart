@@ -1,6 +1,5 @@
 import 'package:estructura_practica_1/splash.dart';
 import 'package:flutter/material.dart';
-import 'package:estructura_practica_1/home/home.dart';
 import 'package:estructura_practica_1/utils/constants.dart';
 
 void main() => runApp(MyApp());
