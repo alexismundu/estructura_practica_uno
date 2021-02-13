@@ -33,7 +33,8 @@ flutter:
 
   assets:
     - assets/images/app_icon.png
-  #   - images/a_dot_ham.jpeg
+    - assets/images/coffee.jpg
+    - assets/images/cupping.png
 
   fonts:
     - family: Montserrat
