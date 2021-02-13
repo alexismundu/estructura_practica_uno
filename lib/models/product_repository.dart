@@ -1,3 +1,4 @@
+import 'package:estructura_practica_1/models/product_dessert.dart';
 import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 import 'package:estructura_practica_1/models/product_grains.dart';
 
@@ -9,9 +10,55 @@ class ProductRepository {
     // ----------------------       Tazas      ----------------------------//
     // ----------------------              ----------------------------//
 
-    //if (prodType == ProductType.POSTRES) {
-    // TODO: Agregar al menos 5 productos "postres"
-    //}
+    if (prodType == ProductType.POSTRES) {
+      return <ProductDessert>[
+        ProductDessert(
+          productTitle: "PASTEL CAPRICHO",
+          productDescription:
+              "Pan de vainilla bañado con tres leches y cubierto con dulce de leche. Una versión original del clásico pastel tres leches. ¿Ya la probaste?",
+          productImage:
+              "https://pasteleriasmarisa.com.mx/dyn/wp-content/uploads/2015/07/Pastel-capricho-cajeta-2.jpg",
+          productSize: DessertProductSize.MINI,
+          productAmount: 0,
+        ),
+        ProductDessert(
+          productTitle: "PASTEL RED VELVET",
+          productDescription:
+              "Suave pan red velvet de intenso y cálido color rojo, con sabor a chocolate oscuro y un clásico betún blanco de queso crema. ¡Aterciopelado y muy chic!",
+          productImage:
+              "https://pasteleriasmarisa.com.mx/dyn/wp-content/uploads/2015/07/Pastel-red-velvet-2.jpg",
+          productSize: DessertProductSize.MINI,
+          productAmount: 0,
+        ),
+        ProductDessert(
+          productTitle: "PASTEL DE MOKA",
+          productDescription:
+              "Pastel de vainilla y chocolate, ligeramente bañado con café y relleno con crema de capuchino y chocolate, cubierto con ganache de chocolate belga y adornado con viruta de chocolate. ¡Una combinación realmente tentadora!",
+          productImage:
+              "https://pasteleriasmarisa.com.mx/dyn/wp-content/uploads/2015/07/Pastel-moka-3.jpg",
+          productSize: DessertProductSize.MINI,
+          productAmount: 0,
+        ),
+        ProductDessert(
+          productTitle: "ROSCA ADICCIÓN",
+          productDescription:
+              "Pan de chocolate bañado con un jarabe de doble chocolate, cubierto por una capa cremosa de queso y más chocolate espolvoreado. ¡Adictivo!",
+          productImage:
+              "https://pasteleriasmarisa.com.mx/dyn/wp-content/uploads/2015/07/Rosca-adiccion-2.jpg",
+          productSize: DessertProductSize.MINI,
+          productAmount: 0,
+        ),
+        ProductDessert(
+          productTitle: "PASTEL DE ZANAHORIA",
+          productDescription:
+              "Pan casero de zanahoria con nueces y cálidas especias, cubierto con suave betún de queso crema y decorado con trazos en forma de zanahorias.",
+          productImage:
+              "https://pasteleriasmarisa.com.mx/dyn/wp-content/uploads/2015/07/Pastel-zanahoria-2.jpg",
+          productSize: DessertProductSize.MINI,
+          productAmount: 0,
+        ),
+      ];
+    }
 
     // ----------------------              ----------------------------//
     // ----------------------       Granos      ----------------------------//
