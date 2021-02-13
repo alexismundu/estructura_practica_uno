@@ -1,3 +1,4 @@
+import 'package:estructura_practica_1/models/product_dessert.dart';
 import 'package:estructura_practica_1/models/product_grains.dart';
 import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 import 'package:estructura_practica_1/models/product_item_cart.dart';
@@ -130,6 +131,19 @@ class _ItemCartState extends State<ItemCart> {
     );
   }
 
+  Text _createDessertSizeText(ProductDessert dessert) {
+    String sizeText = "Rebanada";
+    if (dessert.productSize == DessertProductSize.REBANADA) {
+      sizeText = "Mini";
+    } else if (dessert.productSize == DessertProductSize.COMPLETO) {
+      sizeText = "Completo";
+    }
+    return Text(
+      sizeText,
+      style: TextStyle(color: Theme.of(context).accentColor, fontSize: 16),
+    );
+  }
+
   Text _createGrainWeightText(ProductGrains grains) {
     String sizeText = "Kilo";
     if (grains.productWeight == ProductWeight.CUARTO) {
@@ -146,6 +160,8 @@ class _ItemCartState extends State<ItemCart> {
       return _createDrinkSizeText(product.product);
     } else if (product.typeOfProduct == ProductType.GRANO) {
       return _createGrainWeightText(product.product);
+    } else if (product.typeOfProduct == ProductType.POSTRES) {
+      return _createDessertSizeText(product.product);
     } else {
       return Text(
         "N/A",
@@ -177,6 +193,17 @@ class _ItemCartState extends State<ItemCart> {
           grain.liked = !grain.liked;
         }
       }
+    } else if (widget.product.typeOfProduct == ProductType.POSTRES) {
+      for (ProductDessert dessert in dessertsList) {
+        if (widget.product.productTitle == dessert.productTitle) {
+          if (dessert.liked) {
+            favoriteIcon = Icon(Icons.favorite_border);
+          } else {
+            favoriteIcon = Icon(Icons.favorite);
+          }
+          dessert.liked = !dessert.liked;
+        }
+      }
     }
   }
 
@@ -195,6 +222,16 @@ class _ItemCartState extends State<ItemCart> {
       for (ProductGrains grain in grainsList) {
         if (widget.product.productTitle == grain.productTitle) {
           if (grain.liked) {
+            return Icon(Icons.favorite);
+          } else {
+            return Icon(Icons.favorite_border);
+          }
+        }
+      }
+    } else if (widget.product.typeOfProduct == ProductType.POSTRES) {
+      for (ProductDessert dessert in dessertsList) {
+        if (widget.product.productTitle == dessert.productTitle) {
+          if (dessert.liked) {
             return Icon(Icons.favorite);
           } else {
             return Icon(Icons.favorite_border);

@@ -1,16 +1,16 @@
 import 'package:estructura_practica_1/cart/cart_page.dart';
+import 'package:estructura_practica_1/models/product_dessert.dart';
 import 'package:estructura_practica_1/models/product_item_cart.dart';
 import 'package:estructura_practica_1/models/product_repository.dart';
 import 'package:flutter/material.dart';
 
-import '../models/product_hot_drinks.dart';
 import '../utils/constants.dart';
 
 class ItemDessertDetails extends StatefulWidget {
-  final ProductHotDrinks drink;
+  final ProductDessert dessert;
   ItemDessertDetails({
     Key key,
-    @required this.drink,
+    @required this.dessert,
   }) : super(key: key);
   @override
   _ItemDessertDetailsState createState() => _ItemDessertDetailsState();
@@ -18,18 +18,18 @@ class ItemDessertDetails extends StatefulWidget {
 
 class _ItemDessertDetailsState extends State<ItemDessertDetails> {
   int _selectedIndex = 1;
-  final _options = ["Chico", "Mediano", "Grande"];
+  final _options = ["Rebanada", "Mini", "Completo"];
   IconData favoriteIcon;
 
   @override
   Widget build(BuildContext context) {
     favoriteIcon =
-        widget.drink.liked ? Icons.favorite : Icons.favorite_border_outlined;
+        widget.dessert.liked ? Icons.favorite : Icons.favorite_border;
     return SingleChildScrollView(
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 60, left: 30, right: 30),
+            padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -53,7 +53,7 @@ class _ItemDessertDetailsState extends State<ItemDessertDetails> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20.0),
                         child: Image.network(
-                          "${widget.drink.productImage}",
+                          "${widget.dessert.productImage}",
                           fit: BoxFit.contain,
                           width: 210,
                         ),
@@ -79,12 +79,12 @@ class _ItemDessertDetailsState extends State<ItemDessertDetails> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 30),
-                  child: Text(widget.drink.productTitle,
+                  child: Text(widget.dessert.productTitle,
                       style:
                           TextStyle(fontSize: 28, fontWeight: FontWeight.w100)),
                 ),
                 Container(
-                    child: Text(widget.drink.productDescription,
+                    child: Text(widget.dessert.productDescription,
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w100))),
                 Padding(
@@ -96,7 +96,7 @@ class _ItemDessertDetailsState extends State<ItemDessertDetails> {
                           style: TextStyle(fontSize: 12)),
                       SizedBox(width: 50),
                       Text(
-                        "\$${widget.drink.productPrice}",
+                        "\$${widget.dessert.productPrice}",
                         style: TextStyle(fontSize: 34),
                       )
                     ],
@@ -148,13 +148,14 @@ class _ItemDessertDetailsState extends State<ItemDessertDetails> {
             if (selected) {
               _selectedIndex = i;
               if (i == 0) {
-                widget.drink.productSize = ProductSize.CH;
+                widget.dessert.productSize = DessertProductSize.REBANADA;
               } else if (i == 1) {
-                widget.drink.productSize = ProductSize.M;
+                widget.dessert.productSize = DessertProductSize.MINI;
               } else {
-                widget.drink.productSize = ProductSize.G;
+                widget.dessert.productSize = DessertProductSize.COMPLETO;
               }
-              widget.drink.productPrice = widget.drink.productPriceCalculator();
+              widget.dessert.productPrice =
+                  widget.dessert.productPriceCalculator();
             }
           });
         },
@@ -168,23 +169,23 @@ class _ItemDessertDetailsState extends State<ItemDessertDetails> {
   }
 
   void _setFavoriteIcon() {
-    for (ProductHotDrinks drink in drinksList) {
-      if (widget.drink.productTitle == drink.productTitle) {
-        if (drink.liked) {
+    for (ProductDessert dessert in dessertsList) {
+      if (widget.dessert.productTitle == dessert.productTitle) {
+        if (dessert.liked) {
           favoriteIcon = Icons.favorite_border;
         } else {
           favoriteIcon = Icons.favorite;
         }
-        drink.liked = !drink.liked;
+        dessert.liked = !dessert.liked;
       }
     }
   }
 
-  bool _isDrinkInCart() {
+  bool _isDessertInCart() {
     for (ProductItemCart item in cartItems) {
-      if (item.typeOfProduct != ProductType.BEBIDAS) continue;
-      if (widget.drink.productTitle == item.productTitle &&
-          widget.drink.productSize == item.product.productSize) {
+      if (item.typeOfProduct != ProductType.POSTRES) continue;
+      if (widget.dessert.productTitle == item.productTitle &&
+          widget.dessert.productSize == item.product.productSize) {
         return true;
       }
     }
@@ -192,18 +193,18 @@ class _ItemDessertDetailsState extends State<ItemDessertDetails> {
   }
 
   void _addProductToCart() {
-    if (!_isDrinkInCart()) {
+    if (!_isDessertInCart()) {
       cartItems.add(ProductItemCart(
-        product: ProductHotDrinks(
-            productTitle: widget.drink.productTitle,
-            productDescription: widget.drink.productDescription,
-            productImage: widget.drink.productImage,
-            productSize: widget.drink.productSize,
-            productAmount: widget.drink.productAmount),
+        product: ProductDessert(
+            productTitle: widget.dessert.productTitle,
+            productDescription: widget.dessert.productDescription,
+            productImage: widget.dessert.productImage,
+            productSize: widget.dessert.productSize,
+            productAmount: widget.dessert.productAmount),
         productAmount: 1,
-        productPrice: widget.drink.productPrice,
-        productTitle: widget.drink.productTitle,
-        typeOfProduct: ProductType.BEBIDAS,
+        productPrice: widget.dessert.productPrice,
+        productTitle: widget.dessert.productTitle,
+        typeOfProduct: ProductType.POSTRES,
       ));
     }
   }

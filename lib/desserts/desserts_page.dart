@@ -1,6 +1,5 @@
 import 'package:estructura_practica_1/cart/cart_page.dart';
 import 'package:estructura_practica_1/desserts/item_desserts.dart';
-import 'package:estructura_practica_1/grains/item_grains.dart';
 import 'package:estructura_practica_1/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +14,8 @@ class DessertsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: new Center(
-            child: new Text("Café de grano", textAlign: TextAlign.center)),
+        title:
+            new Center(child: new Text("Postres", textAlign: TextAlign.center)),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.person),
@@ -36,10 +35,10 @@ class DessertsPage extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: drinksList.length,
+        itemCount: dessertsList.length,
         itemBuilder: (BuildContext context, int index) {
           return ItemDesserts(
-            drink: drinksList[index],
+            dessert: dessertsList[index],
           );
         },
       ),

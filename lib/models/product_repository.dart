@@ -13,7 +13,7 @@ class ProductRepository {
     if (prodType == ProductType.POSTRES) {
       return <ProductDessert>[
         ProductDessert(
-          productTitle: "PASTEL CAPRICHO",
+          productTitle: "Capricho",
           productDescription:
               "Pan de vainilla bañado con tres leches y cubierto con dulce de leche. Una versión original del clásico pastel tres leches. ¿Ya la probaste?",
           productImage:
@@ -22,7 +22,7 @@ class ProductRepository {
           productAmount: 0,
         ),
         ProductDessert(
-          productTitle: "PASTEL RED VELVET",
+          productTitle: "Red Velvet",
           productDescription:
               "Suave pan red velvet de intenso y cálido color rojo, con sabor a chocolate oscuro y un clásico betún blanco de queso crema. ¡Aterciopelado y muy chic!",
           productImage:
@@ -31,7 +31,7 @@ class ProductRepository {
           productAmount: 0,
         ),
         ProductDessert(
-          productTitle: "PASTEL DE MOKA",
+          productTitle: "De Moka",
           productDescription:
               "Pastel de vainilla y chocolate, ligeramente bañado con café y relleno con crema de capuchino y chocolate, cubierto con ganache de chocolate belga y adornado con viruta de chocolate. ¡Una combinación realmente tentadora!",
           productImage:
@@ -40,7 +40,7 @@ class ProductRepository {
           productAmount: 0,
         ),
         ProductDessert(
-          productTitle: "ROSCA ADICCIÓN",
+          productTitle: "Adicción",
           productDescription:
               "Pan de chocolate bañado con un jarabe de doble chocolate, cubierto por una capa cremosa de queso y más chocolate espolvoreado. ¡Adictivo!",
           productImage:
@@ -49,7 +49,7 @@ class ProductRepository {
           productAmount: 0,
         ),
         ProductDessert(
-          productTitle: "PASTEL DE ZANAHORIA",
+          productTitle: "De Zanahoria",
           productDescription:
               "Pan casero de zanahoria con nueces y cálidas especias, cubierto con suave betún de queso crema y decorado con trazos en forma de zanahorias.",
           productImage:

@@ -1,13 +1,12 @@
 import 'package:estructura_practica_1/desserts/item_dessert_details.dart';
-import 'package:estructura_practica_1/grains/item_grain_details.dart';
+import 'package:estructura_practica_1/models/product_dessert.dart';
 import 'package:flutter/material.dart';
-import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 
 class DessertDetailsPage extends StatelessWidget {
-  final ProductHotDrinks drink;
+  final ProductDessert dessert;
   DessertDetailsPage({
     Key key,
-    @required this.drink,
+    @required this.dessert,
   }) : super(key: key);
 
   @override
@@ -18,13 +17,13 @@ class DessertDetailsPage extends StatelessWidget {
               child: Padding(
             padding: const EdgeInsets.only(right: 35),
             child: Text(
-              drink.productTitle,
+              dessert.productTitle,
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontFamily: 'Montserrat', fontWeight: FontWeight.w100),
             ),
           )),
         ),
-        body: ItemDessertDetails(drink: drink));
+        body: ItemDessertDetails(dessert: dessert));
   }
 }
