@@ -166,6 +166,17 @@ class _ItemCartState extends State<ItemCart> {
           drink.liked = !drink.liked;
         }
       }
+    } else if (widget.product.typeOfProduct == ProductType.GRANO) {
+      for (ProductGrains grain in grainsList) {
+        if (widget.product.productTitle == grain.productTitle) {
+          if (grain.liked) {
+            favoriteIcon = Icon(Icons.favorite_border);
+          } else {
+            favoriteIcon = Icon(Icons.favorite);
+          }
+          grain.liked = !grain.liked;
+        }
+      }
     }
   }
 
@@ -174,6 +185,16 @@ class _ItemCartState extends State<ItemCart> {
       for (ProductHotDrinks drink in drinksList) {
         if (widget.product.productTitle == drink.productTitle) {
           if (drink.liked) {
+            return Icon(Icons.favorite);
+          } else {
+            return Icon(Icons.favorite_border);
+          }
+        }
+      }
+    } else if (widget.product.typeOfProduct == ProductType.GRANO) {
+      for (ProductGrains grain in grainsList) {
+        if (widget.product.productTitle == grain.productTitle) {
+          if (grain.liked) {
             return Icon(Icons.favorite);
           } else {
             return Icon(Icons.favorite_border);

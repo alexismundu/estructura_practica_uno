@@ -1,3 +1,4 @@
+import 'package:estructura_practica_1/models/product_grains.dart';
 import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 import 'package:estructura_practica_1/models/product_item_cart.dart';
 import 'package:estructura_practica_1/models/product_repository.dart';
@@ -100,3 +101,6 @@ final List<ProductItemCart> cartItems = [];
 
 final List<ProductHotDrinks> drinksList =
     ProductRepository.loadProducts(ProductType.BEBIDAS);
+
+final List<ProductGrains> grainsList =
+    ProductRepository.loadProducts(ProductType.GRANO);

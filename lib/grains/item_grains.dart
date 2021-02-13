@@ -1,14 +1,14 @@
+import 'package:estructura_practica_1/grains/grain_details_page.dart';
+import 'package:estructura_practica_1/models/product_grains.dart';
 import 'package:flutter/material.dart';
-import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 
 import '../utils/constants.dart';
-import 'package:estructura_practica_1/drinks/hot_drink_details_page.dart';
 
 class ItemGrains extends StatefulWidget {
-  final ProductHotDrinks drink;
+  final ProductGrains grain;
   ItemGrains({
     Key key,
-    @required this.drink,
+    @required this.grain,
   }) : super(key: key);
 
   @override
@@ -20,9 +20,9 @@ class _ItemGrainsState extends State<ItemGrains> {
   @override
   Widget build(BuildContext context) {
     favoriteIcon =
-        widget.drink.liked ? Icons.favorite : Icons.favorite_border_outlined;
+        widget.grain.liked ? Icons.favorite : Icons.favorite_border_outlined;
     return GestureDetector(
-      onTap: _openHotDrinkDetails,
+      onTap: _openGrainDetails,
       child: Container(
         height: 220,
         margin: EdgeInsets.only(top: 28, bottom: 24, left: 24, right: 24),
@@ -53,18 +53,18 @@ class _ItemGrainsState extends State<ItemGrains> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "Café",
+                      "Café de grano",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                    Text(widget.drink.productTitle,
+                    Text(widget.grain.productTitle,
                         style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.w300,
                             fontFamily: 'Monserrat',
                             color: SECONDARY_COLOR)),
                     Text(
-                      "\$${widget.drink.productPrice}",
+                      "\$${widget.grain.productPrice}",
                       style: TextStyle(fontSize: 34),
                     )
                   ],
@@ -74,7 +74,7 @@ class _ItemGrainsState extends State<ItemGrains> {
             ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
               child: Image.network(
-                "${widget.drink.productImage}",
+                "${widget.grain.productImage}",
                 fit: BoxFit.contain,
                 width: 140,
               ),
@@ -99,21 +99,21 @@ class _ItemGrainsState extends State<ItemGrains> {
     );
   }
 
-  void _openHotDrinkDetails() {
+  void _openGrainDetails() {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => HotDrinkDetailsPage(drink: widget.drink),
+      builder: (context) => GrainDetailsPage(grain: widget.grain),
     ));
   }
 
   void _setFavoriteIcon() {
-    for (ProductHotDrinks drink in drinksList) {
-      if (widget.drink.productTitle == drink.productTitle) {
-        if (drink.liked) {
+    for (ProductGrains grain in grainsList) {
+      if (widget.grain.productTitle == grain.productTitle) {
+        if (grain.liked) {
           favoriteIcon = Icons.favorite_border;
         } else {
           favoriteIcon = Icons.favorite;
         }
-        drink.liked = !drink.liked;
+        grain.liked = !grain.liked;
       }
     }
   }

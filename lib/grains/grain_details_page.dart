@@ -1,12 +1,12 @@
 import 'package:estructura_practica_1/grains/item_grain_details.dart';
+import 'package:estructura_practica_1/models/product_grains.dart';
 import 'package:flutter/material.dart';
-import 'package:estructura_practica_1/models/product_hot_drinks.dart';
 
 class GrainDetailsPage extends StatelessWidget {
-  final ProductHotDrinks drink;
+  final ProductGrains grain;
   GrainDetailsPage({
     Key key,
-    @required this.drink,
+    @required this.grain,
   }) : super(key: key);
 
   @override
@@ -17,13 +17,13 @@ class GrainDetailsPage extends StatelessWidget {
               child: Padding(
             padding: const EdgeInsets.only(right: 35),
             child: Text(
-              drink.productTitle,
+              grain.productTitle,
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontFamily: 'Montserrat', fontWeight: FontWeight.w100),
             ),
           )),
         ),
-        body: ItemGrainDetails(drink: drink));
+        body: ItemGrainDetails(grain: grain));
   }
 }

@@ -102,7 +102,7 @@ class _ItemHotDrinksState extends State<ItemHotDrinks> {
 
   void _openHotDrinkDetails() {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => GrainDetailsPage(drink: widget.drink),
+      builder: (context) => HotDrinkDetailsPage(drink: widget.drink),
     ));
   }
 

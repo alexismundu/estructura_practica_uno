@@ -35,10 +35,10 @@ class GrainsPage extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: drinksList.length,
+        itemCount: grainsList.length,
         itemBuilder: (BuildContext context, int index) {
           return ItemGrains(
-            drink: drinksList[index],
+            grain: grainsList[index],
           );
         },
       ),

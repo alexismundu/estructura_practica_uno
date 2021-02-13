@@ -1,4 +1,5 @@
 import 'package:estructura_practica_1/cart/cart_page.dart';
+import 'package:estructura_practica_1/models/product_grains.dart';
 import 'package:estructura_practica_1/models/product_item_cart.dart';
 import 'package:estructura_practica_1/models/product_repository.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +8,10 @@ import '../models/product_hot_drinks.dart';
 import '../utils/constants.dart';
 
 class ItemGrainDetails extends StatefulWidget {
-  final ProductHotDrinks drink;
+  final ProductGrains grain;
   ItemGrainDetails({
     Key key,
-    @required this.drink,
+    @required this.grain,
   }) : super(key: key);
   @override
   _ItemGrainDetailsState createState() => _ItemGrainDetailsState();
@@ -18,13 +19,13 @@ class ItemGrainDetails extends StatefulWidget {
 
 class _ItemGrainDetailsState extends State<ItemGrainDetails> {
   int _selectedIndex = 1;
-  final _options = ["Chico", "Mediano", "Grande"];
+  final _options = ["Cuarto", "Kilo"];
   IconData favoriteIcon;
 
   @override
   Widget build(BuildContext context) {
     favoriteIcon =
-        widget.drink.liked ? Icons.favorite : Icons.favorite_border_outlined;
+        widget.grain.liked ? Icons.favorite : Icons.favorite_border_outlined;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -53,7 +54,7 @@ class _ItemGrainDetailsState extends State<ItemGrainDetails> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20.0),
                         child: Image.network(
-                          "${widget.drink.productImage}",
+                          "${widget.grain.productImage}",
                           fit: BoxFit.contain,
                           width: 210,
                         ),
@@ -79,12 +80,12 @@ class _ItemGrainDetailsState extends State<ItemGrainDetails> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 30),
-                  child: Text(widget.drink.productTitle,
+                  child: Text(widget.grain.productTitle,
                       style:
                           TextStyle(fontSize: 28, fontWeight: FontWeight.w100)),
                 ),
                 Container(
-                    child: Text(widget.drink.productDescription,
+                    child: Text(widget.grain.productDescription,
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w100))),
                 Padding(
@@ -96,7 +97,7 @@ class _ItemGrainDetailsState extends State<ItemGrainDetails> {
                           style: TextStyle(fontSize: 12)),
                       SizedBox(width: 50),
                       Text(
-                        "\$${widget.drink.productPrice}",
+                        "\$${widget.grain.productPrice}",
                         style: TextStyle(fontSize: 34),
                       )
                     ],
@@ -148,13 +149,11 @@ class _ItemGrainDetailsState extends State<ItemGrainDetails> {
             if (selected) {
               _selectedIndex = i;
               if (i == 0) {
-                widget.drink.productSize = ProductSize.CH;
-              } else if (i == 1) {
-                widget.drink.productSize = ProductSize.M;
+                widget.grain.productWeight = ProductWeight.CUARTO;
               } else {
-                widget.drink.productSize = ProductSize.G;
+                widget.grain.productWeight = ProductWeight.KILO;
               }
-              widget.drink.productPrice = widget.drink.productPriceCalculator();
+              widget.grain.productPrice = widget.grain.productPriceCalculator();
             }
           });
         },
@@ -168,23 +167,23 @@ class _ItemGrainDetailsState extends State<ItemGrainDetails> {
   }
 
   void _setFavoriteIcon() {
-    for (ProductHotDrinks drink in drinksList) {
-      if (widget.drink.productTitle == drink.productTitle) {
-        if (drink.liked) {
+    for (ProductGrains grain in grainsList) {
+      if (widget.grain.productTitle == grain.productTitle) {
+        if (grain.liked) {
           favoriteIcon = Icons.favorite_border;
         } else {
           favoriteIcon = Icons.favorite;
         }
-        drink.liked = !drink.liked;
+        grain.liked = !grain.liked;
       }
     }
   }
 
-  bool _isDrinkInCart() {
+  bool _isGrainInCart() {
     for (ProductItemCart item in cartItems) {
-      if (item.typeOfProduct != ProductType.BEBIDAS) continue;
-      if (widget.drink.productTitle == item.productTitle &&
-          widget.drink.productSize == item.product.productSize) {
+      if (item.typeOfProduct != ProductType.GRANO) continue;
+      if (widget.grain.productTitle == item.productTitle &&
+          widget.grain.productWeight == item.product.productWeight) {
         return true;
       }
     }
@@ -192,18 +191,18 @@ class _ItemGrainDetailsState extends State<ItemGrainDetails> {
   }
 
   void _addProductToCart() {
-    if (!_isDrinkInCart()) {
+    if (!_isGrainInCart()) {
       cartItems.add(ProductItemCart(
-        product: ProductHotDrinks(
-            productTitle: widget.drink.productTitle,
-            productDescription: widget.drink.productDescription,
-            productImage: widget.drink.productImage,
-            productSize: widget.drink.productSize,
-            productAmount: widget.drink.productAmount),
+        product: ProductGrains(
+            productTitle: widget.grain.productTitle,
+            productDescription: widget.grain.productDescription,
+            productImage: widget.grain.productImage,
+            productWeight: widget.grain.productWeight,
+            productAmount: widget.grain.productAmount),
         productAmount: 1,
-        productPrice: widget.drink.productPrice,
-        productTitle: widget.drink.productTitle,
-        typeOfProduct: ProductType.BEBIDAS,
+        productPrice: widget.grain.productPrice,
+        productTitle: widget.grain.productTitle,
+        typeOfProduct: ProductType.GRANO,
       ));
     }
   }
